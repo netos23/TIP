@@ -110,6 +110,7 @@ object Tip extends App {
         | -andersen          enable Andersen pointer analysis
         | -steensgaard       enable Steensgaard pointer analysis
         | -sign              enable sign analysis
+        | -sizeof            enable size of variable analysis
         | -livevars          enable live variables analysis
         | -available         enable available expressions analysis
         | -vbusy             enable very busy expressions analysis
@@ -336,7 +337,7 @@ object Tip extends App {
           options.andersen = true
         case "-steensgaard" =>
           options.steensgaard = true
-        case "-sign" | "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" | "-copyconstprop" | "-uninitvars" | "-taint" =>
+        case "-sign" | "-sizeof"| "-livevars" | "-available" | "-vbusy" | "-reaching" | "-constprop" | "-interval" | "-copyconstprop" | "-uninitvars" | "-taint" =>
           options.dfAnalysis += dfa.withName(args(i).drop(1)) -> {
             if (i + 1 < args.length && dfo.values.map(_.toString()).contains(args(i + 1))) {
               i = i + 1
